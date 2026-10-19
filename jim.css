@@ -1,0 +1,19 @@
+@media print {
+  .noprint {
+    display: none;
+  }
+  .set-list { 
+    font-size: 18pt;
+    line-height: 20pt;
+  }
+}
+
+@media screen { 
+  .set-list { 
+    font-size: xx-large;
+  }
+}
+
+.set-list { 
+  margin-left: 40px;
+}

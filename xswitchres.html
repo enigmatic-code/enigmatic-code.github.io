@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>XSwitchRes Homepage</title>
+<link rel="stylesheet" type="text/css" href="jim.css">
+<meta name="copyright" content="&copy; 2020, Jim Randell">
+<meta name="author" content="Jim Randell">
+<meta name="description" content="XSwitchRes Homepage">
+<meta name="keywords" content="Jim Randell, Software, XSwitchRes, Switch Resolution, X11, XFree86">
+<meta name="robots" content="index, follow">
+<meta name="generator" content="Jim's Hand-Crafted HTML, Scripted in ePerl">
+<link rel="alternate" type="application/atom+xml" title="Jim's Site - Atom 1.0" href="feed.xml">
+</head>
+
+
+<body>
+
+
+<div class="noprint">
+<table align="left" border="0" cellpadding="1" cellspacing="0">
+<tr><td bgcolor="#ffffff" align="center"><big><b>Jim's Site</b></big></td><td><img src="pixel-transparent.gif" width="15" height="1" alt=""></td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="index.html">Home</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="climbing.html">Climbing&nbsp;&amp;&nbsp;Walking</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="penguins.html"><em>Macaroni&nbsp;Penguins</em></a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="photo.html">Photo&nbsp;Gallery</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="misc.html">Miscellaneous</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="30" height="10" alt="&nbsp;&nbsp;&nbsp;"><small><a href="links.html">Recommended&nbsp;Links</a>&nbsp;</small></td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="30" height="10" alt="&nbsp;&nbsp;&nbsp;"><small><a href="tips.html">Tips</a>&nbsp;</small></td></tr>
+<tr><td bgcolor="#ffff99"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><img src="arrow-right.gif" width="15" height="10" alt="&gt;"><small><b><a href="software.html">Software</a></b>&nbsp;</small></td></tr>
+</table>
+</div>
+
+
+<h1 align="center"><img src="banner-xswitchres.gif" width="295" height="50" alt="XSwitchRes Homepage"></h1>
+<p align="right"><small><small><b>Last Updated:</b> Wed Jun 09 14:15:47 BST 2004</small></small></p>
+<br clear="all">
+<hr>
+
+
+<P>
+  <DIV ALIGN="right">
+       <A HREF="#version"><B>Version</B></A> <BR>
+       <A HREF="#synopsis"><B>Synopsis</B></A> <BR>
+       <A HREF="#description"><B>Description</B></A> <BR>
+       <A HREF="#options"><B>Options</B></A> <BR>
+       <A HREF="#notes"><B>Notes</B></A> <BR>
+       <A HREF="#author"><B>Author</B></A> <BR>
+       <A HREF="#availability"><B>Availability</B></A>
+  </DIV>
+</P>
+
+<P>
+  <BR CLEAR="all">
+  <HR WIDTH="50%" SIZE="4">
+</P>
+
+<A NAME="version"><H2>Version</H2></A>
+
+<P>
+  The current version of <B>XSwitchRes</B> is <B>Version 0.0 (29-Nov-1999)</B>
+  and it was developed to work with <EM>XFree86</EM> 3.3.5 and 3.3.6, but also
+  works with <em>XFree86</em> 4.0.<em>x</em> and 4.1.0.
+</P>
+
+<HR>
+
+<A NAME="synopsis"><H2>Synopsis</H2></A>
+
+<P>
+  <B>xswitchres</B> [<I>-v</I>] <I>&lt;x-resolution&gt;x&lt;y-resolution&gt;</I>
+</P>
+
+<HR>
+
+<A NAME="description"><H2>Description</H2></A>
+
+<P>
+  The <B>xswitchres</B> program allows you to change the resolution of an
+  XFree86 server from the command line (this functionality is usually
+  accessed by the
+  <I>Ctrl</I>+<I>Alt</I>+<I>KP_Plus</I>
+  and
+  <I>Ctrl</I>+<I>Alt</I>+<I>KP_Minus</I>
+  key combinations).
+</P>
+
+<HR>
+
+<A NAME="options"><H2>Options</H2></A>
+
+<P>
+  The normal way to use <B>xswitchres</B> is as follows:
+  <BLOCKQUOTE>
+    <B>xswitchres</B> <I>&lt;x-resolution&gt;x&lt;y-resolution&gt;</I>
+  </BLOCKQUOTE>
+  For example:
+  <BLOCKQUOTE>
+    <B>xswitchres</B> 800x600
+  </BLOCKQUOTE>
+  or
+  <BLOCKQUOTE>
+    <B>xswitchres</B> 1024x768
+  </BLOCKQUOTE>
+  Which switches the display to required resolution, or produces an error
+  if the server does not support the requested resolution.
+</P>
+
+<P>
+  If you add the <B>-v</B> flag <B>xswitchres</B> will output more information
+  (such as the version of <I>XFree86-VidModeExtension</I> and the mode lines
+  that are supported), so if you just want to see a list of the supported
+  resolution modes you can use:
+  <BLOCKQUOTE>
+    <B>xwitchres -v</B>
+  </BLOCKQUOTE>
+</P>
+
+<HR>
+
+<A NAME="notes"><H3>Notes</H3></A>
+
+<P>
+  I wrote this program while I was waiting for cheap rate phone tariff
+  to come into effect one evening. (Nowadays I have unmetered Internet access).
+</P>
+
+<P>
+  If you just want to cycle through the available modes you don't need to use
+  <B>xswitchres</B>, you can just use <I>xvidtune -next</I>
+  (or <I>xvidtune -prev</I>).
+</P>
+
+<hr>
+
+<A NAME="author"><H3>Author</H3></A>
+
+<P>
+  <A HREF="/jim/">Jim Randell
+    <A HREF="mailto:jim_randell@iname.com">&lt;jim_randell@iname.com&gt;</A>
+</P>
+
+<P>
+  Comments, praise, bug reports, money etc. should be mailed to the author.
+</P>
+
+<hr>
+
+<A NAME="availability"><H3>Availability</H3></A>
+
+<P>
+  The following distributions of <B>xswitchres</B> are available:
+</P>
+
+<DL>
+
+  <DD> <A HREF="xswitchres-v0.0-src.tar.gz"><B>Source Code</B></A> (1,297 bytes) </DD> <P>
+
+</DL>
+
+<br clear="all">
+<hr>
+<p align="center">
+<small><small>All information on this site is copyright &copy; 1994-2020 Jim Randell</small></small>
+</p>
+
+
+</body>
+
+</html>

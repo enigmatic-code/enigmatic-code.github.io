@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Jim's Tips: Special Characters in X11</title>
+<link rel="stylesheet" type="text/css" href="jim.css">
+<meta name="copyright" content="&copy; 2020, Jim Randell">
+<meta name="author" content="Jim Randell">
+<meta name="description" content="Jim's Tips: Special Characters in X11">
+<meta name="keywords" content="Jim Randell, Tips, X11, Special Characters, Compose, ISO8859-1">
+<meta name="robots" content="index, follow">
+<meta name="generator" content="Jim's Hand-Crafted HTML, Scripted in ePerl">
+<link rel="alternate" type="application/atom+xml" title="Jim's Site - Atom 1.0" href="feed.xml">
+</head>
+
+
+<body>
+
+
+<div class="noprint">
+<table align="left" border="0" cellpadding="1" cellspacing="0">
+<tr><td bgcolor="#ffffff" align="center"><big><b>Jim's Site</b></big></td><td><img src="pixel-transparent.gif" width="15" height="1" alt=""></td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="index.html">Home</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="climbing.html">Climbing&nbsp;&amp;&nbsp;Walking</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="penguins.html"><em>Macaroni&nbsp;Penguins</em></a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="photo.html">Photo&nbsp;Gallery</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="misc.html">Miscellaneous</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="30" height="10" alt="&nbsp;&nbsp;&nbsp;"><small><a href="links.html">Recommended&nbsp;Links</a>&nbsp;</small></td></tr>
+<tr><td bgcolor="#ffff99"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><img src="arrow-right.gif" width="15" height="10" alt="&gt;"><small><b><a href="tips.html">Tips</a></b>&nbsp;</small></td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="30" height="10" alt="&nbsp;&nbsp;&nbsp;"><small><a href="software.html">Software</a>&nbsp;</small></td></tr>
+</table>
+</div>
+
+
+<h1 align="center"><img src="banner-tips.gif" width="250" height="60" alt="Jim's Tips: Special Characters in X11"></h1>
+<p align="right"><small><small><b>Last Updated:</b> Wed Nov 15 15:38:00 GMT 2006</small></small></p>
+<br clear="all">
+<hr>
+
+
+<H1 ALIGN="center">Special Characters in X11</H1>
+
+<P>
+  <FONT SIZE="-1">
+    <B>Platform:</B> Linux 2.2.x, Linux 2.4.x, UNIX <BR>
+    <B>Requirements:</B> XFree86 3.3.3, 3.3.5, 3.3.6, 4.0.1
+  </FONT>
+</P>
+
+<H3>Enabling a "Multi" Key</H3>
+
+<P>
+  <SMALL><B>Note:</B>
+    If you don't want to assign a special "Multi" key, you can use the default
+    X11 key binding of <EM>&lt;Ctrl-Shift-T&gt;</EM> (providing the application
+    you're using doesn't already use it for something else), and skip straight
+    to the next section: <A HREF="#using"><EM>Using the "Multi" Key</EM></A>.
+  </SMALL>
+</P>
+
+<P>
+  First you need to enable a "Multi" key. I use Caps Lock, because a long time
+  ago I discovered that Caps Lock was more useful disabled than
+  enabled. Several of my colleagues popped the keycap off, but I prefered a
+  software solution and turned to <B>xmodmap</B>.
+</P>
+
+<P>
+  Place the following lines in <B>~/.Xmodmap</B>:
+</P>
+
+<HR WIDTH="20%" ALIGN="left">
+<PRE>
+! clear caps lock & make it into the multi key
+remove lock = Caps_Lock
+keycode 66 = Multi_key
+</PRE>
+<HR WIDTH="20%" ALIGN="left">
+
+<P>
+  (If you just want to disable Caps Lock just put the "remove" line in).
+</P>
+
+<P>
+  You can check the keycode of the Caps Lock key using the <B>xev</B>
+  application (or if you want use a different key as the "Multi" key
+  like the <I>Windows</I> keys or the <I>Menu</I> key).
+</P>
+
+<P>
+  Some X11 environments will read <B>~/.Xmodmap</B> when you start them up,
+  others will need to have the following line added to the start-up file (often
+  <B>~/.xsession</B>):
+</P>
+
+<HR WIDTH="20%" ALIGN="left">
+<PRE>
+xmodmap $HOME/.Xmodmap
+</PRE>
+<HR WIDTH="20%" ALIGN="left">
+
+<P>
+  Or you can just type it into a terminal to enable it immediately.
+</P>
+
+<H3><A NAME="using">Using the "Multi" Key</A></H3>
+
+<P>
+  You can now use the "Multi" key to generate special characters in X11, for
+  example:
+</P>
+
+<DIV ALIGN="center">
+<TABLE BORDER="0" CELLSPACING="2" CELLPADDING="2">
+<TR>
+<TH BGCOLOR="#ffffff">Key Sequence</TH>
+<TH COLSPAN="2" BGCOLOR="#ffffff">Character</TH>
+</TR>
+<TR>
+<TD BGCOLOR="#e0e0e0"><B>Multi&nbsp;a&nbsp;"</B></TD>
+<TD ALIGN="center" BGCOLOR="#e0e0e0">&auml;</TD>
+<TD BGCOLOR="#e0e0e0">(adiaeresis)</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#e0e0e0"><B>Multi&nbsp;c&nbsp;,</B></TD>
+<TD ALIGN="center" BGCOLOR="#e0e0e0">&ccedil;</TD>
+<TD BGCOLOR="#e0e0e0">(ccedilla)</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#e0e0e0"><B>Multi&nbsp;e&nbsp;'</B></TD>
+<TD ALIGN="center" BGCOLOR="#e0e0e0">&eacute;</TD>
+<TD BGCOLOR="#e0e0e0">(eacute)</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#e0e0e0"><B>Multi&nbsp;i&nbsp;^</B></TD>
+<TD ALIGN="center" BGCOLOR="#e0e0e0">&icirc;</TD>
+<TD BGCOLOR="#e0e0e0">(icurcumflex)</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#e0e0e0"><B>Multi&nbsp;n&nbsp;~</B></TD>
+<TD ALIGN="center" BGCOLOR="#e0e0e0">&ntilde;</TD>
+<TD BGCOLOR="#e0e0e0">(ntilde)</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#e0e0e0"><B>Multi&nbsp;o&nbsp;/</B></TD>
+<TD ALIGN="center" BGCOLOR="#e0e0e0">&oslash;</TD>
+<TD BGCOLOR="#e0e0e0">(oslash)</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#e0e0e0"><B>Multi&nbsp;u&nbsp;`</B></TD>
+<TD ALIGN="center" BGCOLOR="#e0e0e0">&ugrave;</TD>
+<TD BGCOLOR="#e0e0e0">(ugrave)</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#e0e0e0"><B>Multi&nbsp;Y&nbsp;=</B></TD>
+<TD ALIGN="center" BGCOLOR="#e0e0e0">&yen;</TD>
+<TD BGCOLOR="#e0e0e0">(yen)</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#e0e0e0"><B>Multi&nbsp;3&nbsp;4</B></TD>
+<TD ALIGN="center" BGCOLOR="#e0e0e0">&#190;</TD>
+<TD BGCOLOR="#e0e0e0">(threequarters)</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#e0e0e0"><B>Multi&nbsp;^&nbsp;0</B></TD>
+<TD ALIGN="center" BGCOLOR="#e0e0e0">&#176;</TD>
+<TD BGCOLOR="#e0e0e0">(degree)</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+  For a full list of key sequences and the characters they produce see the file
+  <b>locale/iso8859-1/Compose</b>
+  on your system (usually under <b>/usr/X11R6/lib/X11</b> or <b>/usr/share/X11</b>).
+</P>
+
+<br clear="all">
+<hr>
+<p align="center">
+<small><small>All information on this site is copyright &copy; 1994-2020 Jim Randell</small></small>
+</p>
+
+
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Jim's Tips: Linux File System Swap</title>
+<link rel="stylesheet" type="text/css" href="jim.css">
+<meta name="copyright" content="&copy; 2020, Jim Randell">
+<meta name="author" content="Jim Randell">
+<meta name="description" content="Jim's Tips: Linux File System Swap">
+<meta name="keywords" content="Jim Randell, Tips, Linux, Swap, File">
+<meta name="robots" content="index, follow">
+<meta name="generator" content="Jim's Hand-Crafted HTML, Scripted in ePerl">
+<link rel="alternate" type="application/atom+xml" title="Jim's Site - Atom 1.0" href="feed.xml">
+</head>
+
+
+<body>
+
+
+<div class="noprint">
+<table align="left" border="0" cellpadding="1" cellspacing="0">
+<tr><td bgcolor="#ffffff" align="center"><big><b>Jim's Site</b></big></td><td><img src="pixel-transparent.gif" width="15" height="1" alt=""></td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="index.html">Home</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="climbing.html">Climbing&nbsp;&amp;&nbsp;Walking</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="penguins.html"><em>Macaroni&nbsp;Penguins</em></a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="photo.html">Photo&nbsp;Gallery</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="misc.html">Miscellaneous</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="30" height="10" alt="&nbsp;&nbsp;&nbsp;"><small><a href="links.html">Recommended&nbsp;Links</a>&nbsp;</small></td></tr>
+<tr><td bgcolor="#ffff99"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><img src="arrow-right.gif" width="15" height="10" alt="&gt;"><small><b><a href="tips.html">Tips</a></b>&nbsp;</small></td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="30" height="10" alt="&nbsp;&nbsp;&nbsp;"><small><a href="software.html">Software</a>&nbsp;</small></td></tr>
+</table>
+</div>
+
+
+<h1 align="center"><img src="banner-tips.gif" width="250" height="60" alt="Jim's Tips: Linux File System Swap"></h1>
+<p align="right"><small><small><b>Last Updated:</b> Wed Jun 09 14:13:41 BST 2004</small></small></p>
+<br clear="all">
+<hr>
+
+
+<H1 ALIGN="center">Swap Tips</H1>
+
+<P>
+  <FONT SIZE="-1">
+    <B>Platform:</B> Linux <BR>
+    <B>Requirements:</B> 2.2.17, 2.2.18, 2.4.1
+  </FONT>
+</P>
+
+<H3>Adding File System Swap To Linux</H3>
+
+<P>
+  Find a drive with some empty space on it (using <B>df</B>) and run the
+  following commands as root (for an extra 128Mb of swap):
+</P>
+
+<HR WIDTH="20%" ALIGN="left">
+<PRE>
+mkdir <EM>&lt;drive&gt;</EM>/swap
+dd if=/dev/zero of=<EM>&lt;drive&gt;</EM>/swap/swap1 bs=1024k count=128
+chmod go-rw <EM>&lt;drive&gt;</EM>/swap/swap1
+mkswap <EM>&lt;drive&gt;</EM>/swap/swap1
+swapon <EM>&lt;drive&gt;</EM>/swap/swap1
+</PRE>
+<HR WIDTH="20%" ALIGN="left">
+
+<P>
+  You'll probably want to enable this swap every time you boot so add the
+  following to <B>/etc/rc.d/rc.local</B>
+</P>
+
+<HR WIDTH="20%" ALIGN="left">
+<PRE>
+## Additional Swap
+echo "Enabling Filesystem Swap"
+swapon <EM>&lt;drive&gt;</EM>/swap/swap*
+</PRE>
+<HR WIDTH="20%" ALIGN="left">
+
+<P>
+  To add more space just do the same thing again (without the <B>mkdir</B>)
+  using a different filename (<B>swap2</B>, <B>swap3</B> etc).
+</P>
+
+<P>
+  If you have multiple drives it's probably a good idea to spread your swap
+  across them and enable them all at the same priority (see <B>swapon(8)</B>)
+  with a line like this in <B>/etc/rc.d/rc.local</B>
+</P>
+
+<HR WIDTH="20%" ALIGN="left">
+<PRE>
+swapon -p 0 <EM>&lt;drive1&gt;</EM>/swap/swap* <EM>&lt;drive2&gt;</EM>/swap/swap* ...
+</PRE>
+<HR WIDTH="20%" ALIGN="left">
+
+<P>
+  You can check the status of your swap space with either of the following
+  commands:
+</P>
+
+<HR WIDTH="20%" ALIGN="left">
+<PRE>
+swapon -s
+cat /proc/swaps
+</PRE>
+<HR WIDTH="20%" ALIGN="left">
+
+<br clear="all">
+<hr>
+<p align="center">
+<small><small>All information on this site is copyright &copy; 1994-2020 Jim Randell</small></small>
+</p>
+
+
+</body>
+
+</html>

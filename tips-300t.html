@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Jim's Tips: D-Link DSL 300T ADSL Ethernet Modem</title>
+<link rel="stylesheet" type="text/css" href="jim.css">
+<meta name="copyright" content="&copy; 2020, Jim Randell">
+<meta name="author" content="Jim Randell">
+<meta name="description" content="Jim's Tips: D-Link DSL 300T ADSL Ethernet Modem">
+<meta name="keywords" content="Jim Randell, Tips, D-Link, DSL 300T, ADSL Ethernet Modem">
+<meta name="robots" content="index, follow">
+<meta name="generator" content="Jim's Hand-Crafted HTML, Scripted in ePerl">
+<link rel="alternate" type="application/atom+xml" title="Jim's Site - Atom 1.0" href="feed.xml">
+</head>
+
+
+<body>
+
+
+<div class="noprint">
+<table align="left" border="0" cellpadding="1" cellspacing="0">
+<tr><td bgcolor="#ffffff" align="center"><big><b>Jim's Site</b></big></td><td><img src="pixel-transparent.gif" width="15" height="1" alt=""></td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="index.html">Home</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="climbing.html">Climbing&nbsp;&amp;&nbsp;Walking</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="penguins.html"><em>Macaroni&nbsp;Penguins</em></a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="photo.html">Photo&nbsp;Gallery</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="misc.html">Miscellaneous</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="30" height="10" alt="&nbsp;&nbsp;&nbsp;"><small><a href="links.html">Recommended&nbsp;Links</a>&nbsp;</small></td></tr>
+<tr><td bgcolor="#ffff99"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><img src="arrow-right.gif" width="15" height="10" alt="&gt;"><small><b><a href="tips.html">Tips</a></b>&nbsp;</small></td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="30" height="10" alt="&nbsp;&nbsp;&nbsp;"><small><a href="software.html">Software</a>&nbsp;</small></td></tr>
+</table>
+</div>
+
+
+<h1 align="center"><img src="banner-tips.gif" width="250" height="60" alt="Jim's Tips: D-Link DSL 300T ADSL Ethernet Modem"></h1>
+<p align="right"><small><small><b>Last Updated:</b> Thu May 26 13:48:21 BST 2005</small></small></p>
+<br clear="all">
+<hr>
+
+
+<h1 align="center">D-Link DSL 300T ADSL Ethernet Modem Tips</h1>
+
+<p>
+  <small>
+    <b>Platform:</b> Linux
+  </small>
+</p>
+
+<h3>Stalling Interactive TCP Connections (ssh, ftp, telnet)</h3>
+
+<p>
+  When I moved from a Cable Modem to an ADSL connection I wanted a
+  simple way to just swap out the Cable Modem box and slide in some
+  kind of ADSL Modem, so I opted for the <em>D-Link DSL 300T</em>,
+  which worked fine as a drop in replacement, until I tried to do an
+  interactive <b>ssh</b> connection, the connection would get set up
+  OK, but then it would hang when entering the interactive session.
+</p>
+
+<p>
+  I tracked it down to the fact that <b>ssh</b> sets the
+  <b>Minimize-Delay</b> <b>IP_TOS</b> flag on interactive sessions,
+  and somewhere down the line these packets didn't seem to be routed
+  correctly.
+</p>
+
+<p>
+  I also discovered (later) that the same problem applied to UDP traffic
+  when I found that my <b>NTP</b> traffic was also being discarded
+  (so my computer's clock drifted out of sync).
+</p>
+
+<p>
+  The solution I came up with was to add an <b>iptables</b> rule to
+  reset the <b>IP_TOS</b> flag to <b>Normal-Service</b> on outgoing traffic from my PC:
+</p>
+<p>
+  <small><em>Note:</em> <b>TOS</b> is now superseded by <b>DSCP</b> within the <b>IETF</b>, according to "man iptables",
+  so the following commands have been adjusted accordingly.</small>
+</p>
+
+<hr width="20%" align="left">
+<pre>
+iptables --table mangle --append OUTPUT --jump DSCP --set-dscp 0x0
+</pre>
+<hr width="20%" align="left">
+
+<p>
+  As my PC also acts as a masquerading gateway for my home network, I
+  also added the following rule so that machines on my home network
+  get the same fix:
+</p>
+
+<hr width="20%" align="left">
+<pre>
+iptables --table mangle --append PREROUTING --jump DSCP --set-dscp 0x0
+</pre>
+<hr width="20%" align="left">
+
+<small>
+<p>
+<b>Note:</b> I've since discovered that the 300T is itself a
+<b>Linux</b> box running an <b>iptables</b> firewall, so you may be able
+to add rules to it's internal firewall to achieve the same thing. If
+you want to try to fiddle with the modem directly you can just
+<b>telnet</b> into it as the user <b>root</b> (default password is
+<b>admin</b>). This also lets you tweak the firewall to allow incoming
+connections (although you should know what you're doing if you start
+tweaking the modem's firewall settings - you could be making your PC
+and home network open to attack from the general internet), for
+instance you can remove the modem's internal firewall completely by
+running <b>/etc/flush_firewall</b>.
+</p>
+<p>
+Alternatively you can flash the firmware in the modem to version
+<a href=" ftp://ftp.dlink.co.uk/dsl_routers_modems/dsl-300t/"><b>V1.00B02T02.UK.20040618</b></a>
+which (among other things) will fix the priority routing, and also disable the NAT firewall.
+</p>
+</small>
+
+<br clear="all">
+<hr>
+<p align="center">
+<small><small>All information on this site is copyright &copy; 1994-2020 Jim Randell</small></small>
+</p>
+
+
+</body>
+
+</html>

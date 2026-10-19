@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Jim's Tips: Elgato EyeTV</title>
+<link rel="stylesheet" type="text/css" href="jim.css">
+<meta name="copyright" content="&copy; 2020, Jim Randell">
+<meta name="author" content="Jim Randell">
+<meta name="description" content="Jim's Tips: Elgato EyeTV">
+<meta name="keywords" content="Jim Randell, Tips, Elgato, EyeTV, Audio Only">
+<meta name="robots" content="index, follow">
+<meta name="generator" content="Jim's Hand-Crafted HTML, Scripted in ePerl">
+<link rel="alternate" type="application/atom+xml" title="Jim's Site - Atom 1.0" href="feed.xml">
+</head>
+
+
+<body>
+
+
+<div class="noprint">
+<table align="left" border="0" cellpadding="1" cellspacing="0">
+<tr><td bgcolor="#ffffff" align="center"><big><b>Jim's Site</b></big></td><td><img src="pixel-transparent.gif" width="15" height="1" alt=""></td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="index.html">Home</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="climbing.html">Climbing&nbsp;&amp;&nbsp;Walking</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="penguins.html"><em>Macaroni&nbsp;Penguins</em></a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="photo.html">Photo&nbsp;Gallery</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="misc.html">Miscellaneous</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="30" height="10" alt="&nbsp;&nbsp;&nbsp;"><small><a href="links.html">Recommended&nbsp;Links</a>&nbsp;</small></td></tr>
+<tr><td bgcolor="#ffff99"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><img src="arrow-right.gif" width="15" height="10" alt="&gt;"><small><b><a href="tips.html">Tips</a></b>&nbsp;</small></td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="30" height="10" alt="&nbsp;&nbsp;&nbsp;"><small><a href="software.html">Software</a>&nbsp;</small></td></tr>
+</table>
+</div>
+
+
+<h1 align="center"><img src="banner-tips.gif" width="250" height="60" alt="Jim's Tips: Elgato EyeTV"></h1>
+<p align="right"><small><small><b>Last Updated:</b> Fri Oct 07 22:41:49 BST 2005</small></small></p>
+<br clear="all">
+<hr>
+
+
+<H1 ALIGN="center">Elgato EyeTV</H1>
+
+<img src="eyetv-audio.jpg" align="right" width="192" height="156">
+
+<P>
+  <small>
+    <B>Platform:</B> Elgato EyeTV 1.8.2 / Apple Mac OS X 10.4.2
+  </small>
+</P>
+
+<H3>Enable Audio Only Channels in Elgato EyeTV for DTT</H3>
+
+<p>
+  <span style="background-color: #ffff99"><b>NOTE:</b> EyeTV 1.8.3 now includes support for audio only channels.</span>
+</p>
+
+<P>
+  I recently bought an
+  <a href="http://www.elgato.com/index.php?file=products_eyetvdtt">Elgato EyeTV for DTT</a>
+  to turn my
+  <a href="http://www.apple.com/uk/powerbook/index12.html">Apple PowerBook</a>
+  into a PVR device.
+</P>
+
+<p>
+  I was quite pleased with it, except for the fact that by default it didn't
+  receive the audio only channels (such as
+  <a href="http://www.bbc.co.uk/bbc7/">BBC7</a>).
+</p>
+
+<p>
+  Fortunately there is a way to enable this (although not through the graphical
+  UI). To enable the receiving of audio only channels type this into a
+  terminal:
+</p>
+
+<HR WIDTH="20%" ALIGN="left">
+<PRE>
+defaults write com.elgato.eyetv "Add Audio-Only Services" -bool true
+</PRE>
+<HR WIDTH="20%" ALIGN="left">
+
+<P>
+  Then restart the EyeTV application, and re-scan for available channels.
+</P>
+
+<br clear="all">
+<hr>
+<p align="center">
+<small><small>All information on this site is copyright &copy; 1994-2020 Jim Randell</small></small>
+</p>
+
+
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+#!/bin/sh --
+###############################################################################
+#
+# File:         ps-preview
+# RCS:          $Header: $
+# Description:  Preview a Postscript File (via gv) before Printing
+# Author:       Jim Randell
+# Created:      Wed Dec  1 18:15:23 1999
+# Modified:     Thu Jun 30 14:51:55 2005 (Jim Randell) jim@imdb.com
+# Language:     Shell-script
+# Package:      N/A
+# Status:       Experimental
+#
+# (C) Copyright 1999, Jim Randell, all rights reserved.
+#
+###############################################################################
+
+#
+# usage: ps-preview [-2] [ps-file ...]
+#
+
+# what's ghostview called?
+GV="gv"
+GVARGS="--media=A4"
+
+#GV=gnome-gv
+#GVARGS=
+
+if [ -z "$DISPLAY" ]
+then
+  echo "$0: can only preview in X11 (null DISPLAY)"
+  exit -1
+fi
+
+if [ -z "$(type -path $GV)" ]
+then
+  echo "$0: can't find ghostview (gv)"
+  exit -1
+fi
+
+if [ "$1" = "-2" ]
+then
+  if [ -n "$(type -path pstops)" ]
+  then
+    PSFILTER="pstops -q 2:0L@.7(21cm,0)+1L@.7(21cm,14.85cm)"
+    GVARGS="$GVARGS --orientation=landscape"
+  elif [ -n "$(type -path psnup)" ]
+  then
+    PSFILTER="psnup -2 -q"
+    GVARGS="$GVARGS --orientation=landscape"
+  else
+    echo "$0: can't find pstops/psnup, 2-up printing disabled"
+  fi
+  shift
+fi
+
+TMPDIR="${TMPDIR:-/tmp}"
+USER="${USER:-nobody}"
+
+if [ $# -eq 0 ]
+then
+  # make a file from stdin
+  PSFILE="$TMPDIR/ps-preview-$USER-$$.ps"
+
+  # delete the output file on exit
+  trap '/bin/rm -f "$PSFILE"' EXIT
+
+  # save the output file
+  cat - > "$PSFILE"
+
+  set -- "$PSFILE"
+fi
+
+for PSFILE
+do
+  # run ghostview on the file
+  if [ -n "$PSFILTER" ]
+  then
+    PS2FILE="$TMPDIR/ps-preview-filtered-$USER-$$.ps"
+    $PSFILTER < "$PSFILE" > "$PS2FILE"
+    $GV $GVARGS "$PS2FILE"
+    /bin/rm -f "$PS2FILE"
+  else
+    $GV $GVARGS "$PSFILE"
+  fi
+done

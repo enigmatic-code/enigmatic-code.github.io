@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Jim's Tips: Ghostview</title>
+<link rel="stylesheet" type="text/css" href="jim.css">
+<meta name="copyright" content="&copy; 2020, Jim Randell">
+<meta name="author" content="Jim Randell">
+<meta name="description" content="Jim's Tips: Ghostview">
+<meta name="keywords" content="Jim Randell, Tips, Ghostview, Printing, Preview, Manual Duplex">
+<meta name="robots" content="index, follow">
+<meta name="generator" content="Jim's Hand-Crafted HTML, Scripted in ePerl">
+<link rel="alternate" type="application/atom+xml" title="Jim's Site - Atom 1.0" href="feed.xml">
+</head>
+
+
+<body>
+
+
+<div class="noprint">
+<table align="left" border="0" cellpadding="1" cellspacing="0">
+<tr><td bgcolor="#ffffff" align="center"><big><b>Jim's Site</b></big></td><td><img src="pixel-transparent.gif" width="15" height="1" alt=""></td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="index.html">Home</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="climbing.html">Climbing&nbsp;&amp;&nbsp;Walking</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="penguins.html"><em>Macaroni&nbsp;Penguins</em></a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="photo.html">Photo&nbsp;Gallery</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><a href="misc.html">Miscellaneous</a>&nbsp;</td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="30" height="10" alt="&nbsp;&nbsp;&nbsp;"><small><a href="links.html">Recommended&nbsp;Links</a>&nbsp;</small></td></tr>
+<tr><td bgcolor="#ffff99"><img src="pixel-transparent.gif" width="15" height="10" alt="&nbsp;"><img src="arrow-right.gif" width="15" height="10" alt="&gt;"><small><b><a href="tips.html">Tips</a></b>&nbsp;</small></td></tr>
+<tr><td bgcolor="#cccccc"><img src="pixel-transparent.gif" width="30" height="10" alt="&nbsp;&nbsp;&nbsp;"><small><a href="software.html">Software</a>&nbsp;</small></td></tr>
+</table>
+</div>
+
+
+<h1 align="center"><img src="banner-tips.gif" width="250" height="60" alt="Jim's Tips: Ghostview"></h1>
+<p align="right"><small><small><b>Last Updated:</b> Wed Jun 09 14:13:46 BST 2004</small></small></p>
+<br clear="all">
+<hr>
+
+
+<H1 ALIGN="center">Printing Tips</H1>
+
+<P>
+  <FONT SIZE="-1">
+    <B>Platform:</B> Linux, UNIX <BR>
+    <B>Requirements:</B> Ghostscript, Ghostview
+  </FONT>
+</P>
+
+<H3>Print Preview</H3>
+
+<P>
+  If you'd like to preview your printout before sending it to the
+  printer, select "Print To File" from your application. then view the
+  resulting file with <EM>Ghostview</EM> (<B>gv</B>) before printing it.
+</P>
+
+<P>
+  Alternatively, set up your application to print with the 
+  <B>ps-preview</B>
+  script below, rather than <B>lpr</B> (or <B>lp</B>).
+</P>
+
+<H3>Manual Duplexing</H3>
+
+<P>
+  If you want to do duplex printing on a single sided printer, you can
+  use <EM>Ghostview</EM> for that too. Mark the odd numbered pages (there's a
+  button for it), print the marked pages, then reinsert them into the
+  paper tray the other way up, select the even numbered pages and then
+  print them onto the back of the odd numbered pages. (Don't reinsert the last
+  odd numbered page if you're printing an odd number of pages).
+</P>
+
+<H3>Resources</H3>
+
+<DL>
+  <DT><A HREF="ps-preview"><B>ps-preview</B></A></DT>
+  <DD>
+      You can use this shell script to replace <B>lpr</B> when printing from
+      applications. It will use <EM>Ghostview</EM> (<B>gv</B>) to preview
+      the <EM>Postscript</EM>
+      output, allowing you to print selected pages or do manual duplexing. <BR>
+      Save this file onto your <B>$PATH</B>, and make it executable. <BR> <BR>
+      <B>07/Apr/2000</B> - <B>ps-preview</B> now accepts an optional <B>-2</B>
+      argument that will do 2-up printing (2 half-size pages on a single
+      page) if the <B>psnup</B> (from <EM>psutils</EM> package) is available
+      on your system. <BR>
+      <B>Note:</B> If you're viewing a document in <EM>Ghostview</EM> and you
+      want to see it in 2-up form you can just select "Print All" and enter
+      "ps-preview -2" as the printer command. (And if you do this again you'll
+      end up with 4-up etc.)
+  </DD>
+</DL>
+
+<br clear="all">
+<hr>
+<p align="center">
+<small><small>All information on this site is copyright &copy; 1994-2020 Jim Randell</small></small>
+</p>
+
+
+</body>
+
+</html>
