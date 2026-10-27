@@ -34,7 +34,7 @@
 
 
 <h1 align="center">Enigma Library (enigma.py)</h1>
-<p align="right"><small><small><b>Last Updated:</b> Mon Oct 19 10:37:49 BST 2026</small></small></p>
+<p align="right"><small><small><b>Last Updated:</b> Tue Oct 27 15:26:10 GMT 2026</small></small></p>
 <br clear="all">
 <hr>
 
@@ -56,7 +56,7 @@ site.
 <p>
 You can download the latest version here:
 <ul>
-<li><a href="enigma.py">Download <b>enigma.py</b> version 2026-10-17</a>.</li>
+<li><a href="enigma.py">Download <b>enigma.py</b> version 2026-10-19</a>.</li>
 </ul>
 Once downloaded the module can perform update checks itself, see
 <a href="#COMMAND_LINE_USAGE">the documentation for the -u command line flag</a> for details.
@@ -328,10 +328,10 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
         current python version:
     
           % python enigma.py
-          [enigma.py version 2026-10-17 (Python 2.7.18)]
+          [enigma.py version 2026-10-19 (Python 2.7.18)]
     
           % python3 enigma.py
-          [enigma.py version 2026-10-17 (Python 3.15.0)]
+          [enigma.py version 2026-10-19 (Python 3.15.0)]
     
     
       % python3 enigma.py -t[v]
@@ -363,12 +363,12 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
           % python3 enigma.py -ur
           [enigma.py version 2013-09-10 (Python 3.15.0)]
           checking for updates...
-          latest version is 2026-10-17
-          downloading latest version to "2026-10-17-enigma.py"
+          latest version is 2026-10-19
+          downloading latest version to "2026-10-19-enigma.py"
           ........
           download complete
           checksum verified
-          renaming "2026-10-17-enigma.py" to "enigma.py"
+          renaming "2026-10-19-enigma.py" to "enigma.py"
     
         Note that the updated version is downloaded to a file named
         "&lt;version&gt;-enigma.py" in the current directory. You can then
@@ -379,9 +379,9 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
         this:
     
           % python3 enigma.py -u
-          [enigma.py version 2026-10-17 (Python 3.15.0)]
+          [enigma.py version 2026-10-19 (Python 3.15.0)]
           checking for updates...
-          latest version is 2026-10-17
+          latest version is 2026-10-19
           enigma.py is up to date
     
         If -uc is specified then the module will only check if an update
@@ -403,17 +403,17 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
         into a requirements.txt file:
     
           % python3 -m enigma -pr
-          [enigma.py version 2026-10-17 (Python 3.15.0)]
+          [enigma.py version 2026-10-19 (Python 3.15.0)]
     
           enigma@https://github.com/enigmatic-code/py-enigma/tarball/master
     
         The -u flag will use pip to install/upgrade enigma.py:
     
           % python3 -m enigma -pu
-          [enigma.py version 2026-10-17 (Python 3.15.0)]
+          [enigma.py version 2026-10-19 (Python 3.15.0)]
           Collecting enigma@https://github.com/enigmatic-code/py-enigma/tarball/master
           ...
-          Successfully installed enigma-2.7.20261017
+          Successfully installed enigma-2.7.20261019
     
     
       % python3 enigma.py -h
@@ -421,7 +421,7 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
         Provides a quick summary of the command line usage:
     
           % python3 enigma.py -h
-          [enigma.py version 2026-10-17 (Python 3.15.0)]
+          [enigma.py version 2026-10-19 (Python 3.15.0)]
           command line arguments:
             &lt;class&gt; &lt;args&gt; = run run_command_line(&lt;args&gt;) method on class
             [-r | --run] &lt;file&gt; [&lt;additional-args&gt;] = run the solver and args specified in &lt;file&gt;
@@ -542,7 +542,7 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
      |      
      |      The accumulation function and initial value can be specified.
      |  
-     |  __repr__(self)
+     |  __str__(self)
      |  
      |  accumulate(self, v=1)
      |      Accumulate a value.
@@ -963,7 +963,7 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
      |        x.evaluated --&gt; False
      |        x.value (or x()) --&gt; returns expensive(1), but re-evaluates it
      |  
-     |  __repr__(self)
+     |  __str__(self)
      |  
      |  evaluate(self)
      |  
@@ -1469,6 +1469,8 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
      |  
      |  __repr__(self)
      |  
+     |  __str__(self)
+     |  
      |  contains(self, x)
      |      # does an interval contain a value?
      |  
@@ -1880,7 +1882,7 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
      |  
      |  __init__(self, fns, *args, **kw)
      |  
-     |  __repr__(self)
+     |  __str__(self)
      |  
      |  accumulate(self, v)
      |  
@@ -2693,6 +2695,16 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
      |  output_sqrx(self, s, ans=None, rem=0, pre='  ', start='', end='', sep=' ')
      |      # square root extraction, set: answer=term to produce: sqrt(term)
      |  
+     |  rsubstitute(self, s, text, symbols=None)
+     |      given a solution to the substituted expression sum, and some text
+     |      containing digits in the solution, return the text with digits
+     |      substituted for symbols.
+     |      
+     |      the symbols should have distinct values in the solution, and if
+     |      there is only one set of distinct symbols defined in the recipe,
+     |      then the 'symbols' parameter can be omitted, and that set will be
+     |      used instead.
+     |  
      |  run(self, check=None, first=None, verbose=None)
      |      find solutions to the substituted expression problem and output them.
      |      
@@ -2711,8 +2723,8 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
      |      # generate appropriate command line arguments to reconstruct this instance
      |  
      |  substitute(self, s, text, digits=None)
-     |      given a solution to the substituted expression sum and some text,
-     |      return the text with the letters substituted for digits.
+     |      given a solution to the substituted expression sum, and some text,
+     |      return the text with the symbols substituted for digits.
      |  
      |  to_args(self, quote=1)
      |      # generate appropriate command line arguments to reconstruct this instance
@@ -2920,6 +2932,16 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
      |  output_sqrx(self, s, ans=None, rem=0, pre='  ', start='', end='', sep=' ')
      |      # square root extraction, set: answer=term to produce: sqrt(term)
      |  
+     |  rsubstitute(self, s, text, symbols=None)
+     |      given a solution to the substituted expression sum, and some text
+     |      containing digits in the solution, return the text with digits
+     |      substituted for symbols.
+     |      
+     |      the symbols should have distinct values in the solution, and if
+     |      there is only one set of distinct symbols defined in the recipe,
+     |      then the 'symbols' parameter can be omitted, and that set will be
+     |      used instead.
+     |  
      |  run(self, check=None, first=None, verbose=None)
      |      find solutions to the substituted expression problem and output them.
      |      
@@ -2947,8 +2969,8 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
      |      verbose - if set to &gt;0 solutions are output as they are found, &gt;1 additional information is output.
      |  
      |  substitute(self, s, text, digits=None)
-     |      given a solution to the substituted expression sum and some text,
-     |      return the text with the letters substituted for digits.
+     |      given a solution to the substituted expression sum, and some text,
+     |      return the text with the symbols substituted for digits.
      |  
      |  to_args(self, quote=1)
      |      # generate appropriate command line arguments to reconstruct this instance
@@ -5046,7 +5068,7 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
      |  
      |  __init__(self, name, vs)
      |  
-     |  __repr__(self)
+     |  __str__(self)
      |  
      |  ----------------------------------------------------------------------
      |  Data descriptors defined here:
@@ -5298,7 +5320,7 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
         # find the common difference of an arithmetic sequence (or None)
     
     <a name="aseq_sum">aseq_sum</a>(seq)
-        # calculate the sum of an arithmetic sequence
+        # calculate the sum of an arithmetic sequence (finite)
         # (for large ranges this is faster than calling sum() on it)
     
     <a name="asin_ht">asin_ht</a>(x, ht=None)
@@ -6695,6 +6717,11 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
         &gt;&gt;&gt; d = dict((n, n % 2) for n in irange(0, 9))
         &gt;&gt;&gt; group(d.items(), by=item(1), f=item(0), fn=sorted)
         {0: [0, 2, 4, 6, 8], 1: [1, 3, 5, 7, 9]}
+    
+    <a name="gseq_sum">gseq_sum</a>(a, r, n=inf, div=&lt;enigma.Rdiv object&gt;)
+        # calculate the convergent sum of a geometric sequence (possibly infinite)
+        # with first term &lt;a&gt;, and common ratio &lt;r&gt;
+        # i.e. a + a.r + a.r^2 + a.r^3 + ... + a.r^n
     
     <a name="gss_minimiser">gss_minimiser</a>(f, a, b, t=1e-09, m=None)
         # a golden section search minimiser
@@ -8632,6 +8659,10 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
           require("enigma.version", "2022-12-05")
           require("sys.version", "3.10")
     
+    <a name="resolve">resolve</a>(name, env=None, fail=None, validate=0)
+        # find the value of &lt;name&gt; in the calling scope (or &lt;env&gt;)
+        # return Record(name=..., value=..., status=...); &lt;value&gt; is &lt;fail&gt; for errors
+    
     <a name="respace">respace</a>(x, sep=' ')
         respace string &lt;x&gt;.
         
@@ -9503,7 +9534,7 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
         # special case the most usual scenario = count the correlations between two lists
 
 <b><a name="VERSION">VERSION</a></b>
-    2026-10-17
+    2026-10-19
 
 <b><a name="AUTHOR">AUTHOR</a></b>
     Jim Randell &lt;jim.randell@gmail.com&gt;
