@@ -34,7 +34,7 @@
 
 
 <h1 align="center">Enigma Library (enigma.py)</h1>
-<p align="right"><small><small><b>Last Updated:</b> Tue Oct 27 15:26:10 GMT 2026</small></small></p>
+<p align="right"><small><small><b>Last Updated:</b> Thu Oct 29 08:35:29 GMT 2026</small></small></p>
 <br clear="all">
 <hr>
 
@@ -56,7 +56,7 @@ site.
 <p>
 You can download the latest version here:
 <ul>
-<li><a href="enigma.py">Download <b>enigma.py</b> version 2026-10-19</a>.</li>
+<li><a href="enigma.py">Download <b>enigma.py</b> version 2026-10-28</a>.</li>
 </ul>
 Once downloaded the module can perform update checks itself, see
 <a href="#COMMAND_LINE_USAGE">the documentation for the -u command line flag</a> for details.
@@ -328,10 +328,10 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
         current python version:
     
           % python enigma.py
-          [enigma.py version 2026-10-19 (Python 2.7.18)]
+          [enigma.py version 2026-10-28 (Python 2.7.18)]
     
           % python3 enigma.py
-          [enigma.py version 2026-10-19 (Python 3.15.0)]
+          [enigma.py version 2026-10-28 (Python 3.15.0)]
     
     
       % python3 enigma.py -t[v]
@@ -363,12 +363,12 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
           % python3 enigma.py -ur
           [enigma.py version 2013-09-10 (Python 3.15.0)]
           checking for updates...
-          latest version is 2026-10-19
-          downloading latest version to "2026-10-19-enigma.py"
+          latest version is 2026-10-28
+          downloading latest version to "2026-10-28-enigma.py"
           ........
           download complete
           checksum verified
-          renaming "2026-10-19-enigma.py" to "enigma.py"
+          renaming "2026-10-28-enigma.py" to "enigma.py"
     
         Note that the updated version is downloaded to a file named
         "&lt;version&gt;-enigma.py" in the current directory. You can then
@@ -379,9 +379,9 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
         this:
     
           % python3 enigma.py -u
-          [enigma.py version 2026-10-19 (Python 3.15.0)]
+          [enigma.py version 2026-10-28 (Python 3.15.0)]
           checking for updates...
-          latest version is 2026-10-19
+          latest version is 2026-10-28
           enigma.py is up to date
     
         If -uc is specified then the module will only check if an update
@@ -403,17 +403,17 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
         into a requirements.txt file:
     
           % python3 -m enigma -pr
-          [enigma.py version 2026-10-19 (Python 3.15.0)]
+          [enigma.py version 2026-10-28 (Python 3.15.0)]
     
           enigma@https://github.com/enigmatic-code/py-enigma/tarball/master
     
         The -u flag will use pip to install/upgrade enigma.py:
     
           % python3 -m enigma -pu
-          [enigma.py version 2026-10-19 (Python 3.15.0)]
+          [enigma.py version 2026-10-28 (Python 3.15.0)]
           Collecting enigma@https://github.com/enigmatic-code/py-enigma/tarball/master
           ...
-          Successfully installed enigma-2.7.20261019
+          Successfully installed enigma-2.7.20261028
     
     
       % python3 enigma.py -h
@@ -421,7 +421,7 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
         Provides a quick summary of the command line usage:
     
           % python3 enigma.py -h
-          [enigma.py version 2026-10-19 (Python 3.15.0)]
+          [enigma.py version 2026-10-28 (Python 3.15.0)]
           command line arguments:
             &lt;class&gt; &lt;args&gt; = run run_command_line(&lt;args&gt;) method on class
             [-r | --run] &lt;file&gt; [&lt;additional-args&gt;] = run the solver and args specified in &lt;file&gt;
@@ -3597,7 +3597,7 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
      |      
      |      returns (self - m, m - self)
      |  
-     |  discard = delete(self, item)
+     |  discard(self, item)
      |      delete all occurrences of an item from the multiset
      |  
      |  distinct_elements = keys(...)
@@ -4300,6 +4300,7 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
      |  
      |  delete(self, item)
      |      delete all occurrences of an item from the multiset
+     |      return the number of items removed (may be 0)
      |  
      |  difference(self, m)
      |      return (self - m)
@@ -4309,7 +4310,8 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
      |      
      |      returns (self - m, m - self)
      |  
-     |  discard = delete(self, item)
+     |  discard(self, item)
+     |      delete all occurrences of an item from the multiset
      |  
      |  distinct_elements = keys(...)
      |      D.keys() -&gt; list of D's keys
@@ -4737,6 +4739,7 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
      |  
      |  delete(self, item)
      |      delete all occurrences of an item from the multiset
+     |      return the number of items removed (may be 0)
      |  
      |  difference(self, m)
      |      return (self - m)
@@ -4746,7 +4749,8 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
      |      
      |      returns (self - m, m - self)
      |  
-     |  discard = delete(self, item)
+     |  discard(self, item)
+     |      delete all occurrences of an item from the multiset
      |  
      |  distinct_elements = keys(...)
      |      D.keys() -&gt; list of D's keys
@@ -9534,7 +9538,7 @@ directory on your <tt>$PYTHONPATH</tt> for more general use.
         # special case the most usual scenario = count the correlations between two lists
 
 <b><a name="VERSION">VERSION</a></b>
-    2026-10-19
+    2026-10-28
 
 <b><a name="AUTHOR">AUTHOR</a></b>
     Jim Randell &lt;jim.randell@gmail.com&gt;
